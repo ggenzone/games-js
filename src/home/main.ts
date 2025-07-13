@@ -19,7 +19,7 @@ function createParticles() {
 }
 
 // Efecto de hover para las tarjetas
-document.querySelectorAll('.game-card').forEach(card => {
+document.querySelectorAll<HTMLElement>('.game-card').forEach(card => {
     card.addEventListener('mouseenter', function(this: HTMLElement) {
         this.style.transform = 'translateY(-10px) scale(1.02)';
     });
@@ -33,7 +33,7 @@ document.querySelectorAll('.game-card').forEach(card => {
 
 // Animación de entrada para las tarjetas
 function animateCards() {
-    const cards = document.querySelectorAll('.game-card');
+    const cards = document.querySelectorAll<HTMLElement>('.game-card');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(50px)';
@@ -55,7 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // Efecto de parallax suave
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.particles');
+    const parallax = document.querySelector<HTMLElement>('.particles');
     const speed = scrolled * 0.5;
-    parallax.style.transform = `translateY(${speed}px)`;
+    if (parallax) {
+        parallax.style.transform = `translateY(${speed}px)`;
+    }
 });
